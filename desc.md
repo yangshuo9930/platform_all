@@ -54,6 +54,17 @@
   2. 在package.json 中新建脚本命名  "prepare": "husky install" 
      或者执行 npm set-script prepare "husky install" 命令 自动新增该脚本
   3. 执行 npmp run prepare 生成 .husky 文件
+  4. husky 准备好之后，我们接着来安装其他的用于规范，检查代码的依赖。
+    pnpm add lint-staged -D -w
+  5. 在package.json中新增
+    "lint-staged": {
+      "src/**/*.{js,jsx,ts,tsx,json}": [
+        "prettier --write",
+        "eslint",
+        "git add"
+      ]
+  }
+  
 
 8. 安装 @commitlint/cli @commitlint/config-conventional commitlint相关依赖，用来帮助我们在多人开发时，遵守 git 提交约定
 
