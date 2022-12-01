@@ -45,3 +45,26 @@
     'plugin:@typescript-eslint/recommended',
     ++ 'plugin:prettier/recommended' 
   ],
+
+7. 安装 husky. husky作用就是简单调用git的hooks钩子, 方便你运行一些脚本命令.
+  常用的git钩子https://juejin.cn/post/6982192362583752741
+  注意安装的版本 6版本以上发生破坏性更改
+
+  1. 安装 pnpm add husky -D -w
+  2. 在package.json 中新建脚本命名  "prepare": "husky install" 
+     或者执行 npm set-script prepare "husky install" 命令 自动新增该脚本
+  3. 执行 npmp run prepare 生成 .husky 文件
+
+8. 安装 @commitlint/cli @commitlint/config-conventional commitlint相关依赖，用来帮助我们在多人开发时，遵守 git 提交约定
+
+9. 执行 echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js在根目录创建 commitlint.config.js 文件（当然也可以手动创建此文件)
+
+10. 执行yarn husky add .husky/commit-msg 'yarn commitlint --edit "$1"'之后，会看到在根目录的.husky文件夹下多了一个 commit-msg 文件 用于提示提交报错信息
+  执行 git add .husky/commit-msg 将上一步添加的钩子添加到git中去
+
+11. 执行yarn husky add .husky/pre-commit 'yarn lint-staged --allow-empty "$1"'之后，会看到在根目录的.husky文件夹下多了一个 pre-commit 文件
+
+  同样的，我们需要将上一步添加的钩子添加到git中去，执行
+
+12. 接下来提交校验一下刚刚的提交信息配置
+
