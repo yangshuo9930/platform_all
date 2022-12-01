@@ -22,6 +22,14 @@
 3. 安装 @typescript-eslint/parser ESLint 默认使用Espree作为其解析器, 但是由于我们项目是 ts 文件
   pnpm add @typescript-eslint/parser -D -w 
 
+4. 安装 @typescript-eslint/eslint-plugin 一个 ESLint 插件，为 TypeScript 代码库提供 lint 规则
+  pnpm add @typescript-eslint/eslint-plugin  -D -w 
+
+  配置elintrc.js 
+  extends: [
+    ++  'plugin:@typescript-eslint/recommended', 
+  ],
+
 4. 安装prettier和相关插件
   pnpm  add prettier eslint-config-prettier eslint-plugin-prettier  -D -w
 
@@ -33,3 +41,7 @@
 5. 新建prettier.config.js文件来配置格式化
 
 6. 接着修改.eslintrc.js文件，引入prettier：
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    ++ 'plugin:prettier/recommended' 
+  ],

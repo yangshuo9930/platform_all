@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write --cache --parser typescript \"packages/**/*.ts?(x)\""
+    "prettier:format": "prettier --write --cache --parser typescript \"packages/**/*.ts?(x)\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",

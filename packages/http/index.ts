@@ -1,3 +1,5 @@
-export default function  index() {
+export default function index() {
   return []
 }
+
+const a = 1
