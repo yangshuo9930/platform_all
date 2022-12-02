@@ -1,4 +1,7 @@
-module.exports = {
+const { defineConfig } = require('eslint-define-config') // 类型
+
+module.exports = defineConfig({
+  root: true, // 根
   env: {
     // 使用eslint的环境
     browser: true,
@@ -54,4 +57,4 @@ module.exports = {
     'space-before-function-paren': 'off' // 函数空格前加个括号
   },
   ignorePatterns: ['node_modules/**', 'dist/**', 'release/**', 'public/**', 'docs/**']
-}
+})
