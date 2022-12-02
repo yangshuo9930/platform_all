@@ -1,15 +1,13 @@
 {
   "name": "@monorepo/utils",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "常用JS函数的封装",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "qs": "^6.11.0"
-  }
+  "dependencies": {}
 }

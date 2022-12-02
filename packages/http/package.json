@@ -1,8 +1,8 @@
 {
   "name": "@monorepo/http",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "网络请求库axios的二次封装",
+  "main": "./lib/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@monorepo/config": "workspace:*",
+    "@monorepo/enums": "workspace:*",
+    "@monorepo/utils": "workspace:*",
     "axios": "^1.2.0"
   }
 }

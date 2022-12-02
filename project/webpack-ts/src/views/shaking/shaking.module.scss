@@ -1,0 +1,11 @@
+.root {
+  background-color: #fff;
+
+  :global {
+    .shaking-wrap {
+      background-color: blue;
+      font-size: 20px;
+      height: 500px;
+    }
+  }
+}

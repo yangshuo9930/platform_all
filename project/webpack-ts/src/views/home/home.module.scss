@@ -1,0 +1,11 @@
+.root {
+  background-color: #fff;
+
+  :global {
+    .home-wrap {
+      height: 300px;
+      color: red;
+      background: pink;
+    }
+  }
+}

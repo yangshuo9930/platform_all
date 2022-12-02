@@ -1,0 +1,152 @@
+{
+  /** 在files中的文件会被tsc编译 */
+  // "files": [],
+  /** 继承其他文件的ts配置 */
+  "extends": "../../tsconfig.base.json",
+  /* ts的编译配置 */
+  "compilerOptions": {
+    /* 编译后JS代码的版本. ES3(默认)/ES5/ES6(推荐)/esnext. */
+    "target": "esnext",
+    /* 
+      TS需要引用的库, 即声明文件(只有引用后TS才会懂得相关语法)
+      es5 默认引用dom, es5, scripthost, 如果想要在ES5中使用其他es的高级版本特性, 通常都需要配置
+      比如想使用ES的数组新特性则需要引入"ES2019.Array"
+      注意：
+          如果未指定--lib，则会注入默认的librares列表。注入的默认库为：
+          对于 --target ES5: DOM,ES5,ScriptHost
+          对于 --target ES6: DOM,ES6,DOM.Iterable,ScriptHost
+      TS 绝不会在您的代码中注入polyfill,所以需要你自己制定编译lib,通常都会使用最新的ES语法, 配置下面的即可 
+    */
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+    /* 是否采用一些实验性语法 ES7 修饰器启用实验支持 */
+    "experimentalDecorators": false,
+    /* 编译后JS代码使用的模块化标准. commonjs/amd/ES6/esnext */
+    "module": "esnext",
+    // 使用的JSX种类. react/react-native/preserve
+    "jsx": "react-jsx",
+    /* 是否引入npm包tslib中的辅助函数,__extends等  */
+    "importHelpers": true,
+    /* 用于选择模块解析策略，有'node'(默认值)和'classic'(TS早期使用)两种类型 */
+    "moduleResolution": "node",
+    /* 是否跳过第三方的声明文件的类型检查 */
+    "skipLibCheck": true,
+    /* 是否允许CommonJS和ES模块之间的互操作性(混合使用模块化规范) */
+    "esModuleInterop": true,
+    /* 是否允许导入没有默认导出的模块。这不会影响代码发出，只是类型检查。  */
+    "allowSyntheticDefaultImports": true,
+    /* 是否生成生成目标文件对应的.map文件 */
+    "sourceMap": true,
+    /* 是否允许编译器编译JS/JSX文件 */
+    "allowJs": false,
+    /* 是否检测JS的语法 通常与allowJS一起使用,例如下面的语法编辑器会报错
+             let name = 'paul';
+             console.log(name.a.b) */
+    "checkJs": false, // 不检查JS文件
+    /* 是否开启严格模式. this/any/null/undefind使用限制. 会有更多详细配置 */
+    "strict": true,
+    // "noImplicitAny": true, // 不允许隐式的any类型 - 严格模式下的子项
+    // "alwaysStrict": true, // 是否使用js的严格模式,在每一个文件上部声明 use strict
+    // "noImplicitAny": false, // 不允许隐式的any类型
+    // "strictNullChecks": true, // 不允许把null、undefined赋值给其他类型的变量
+    // "strictFunctionTypes": true, // 不允许函数参数双向协变
+    // "strictPropertyInitialization": true, // 类的实例属性必须初始化
+    // "strictBindCallApply": true, // 严格的bind/call/apply检查
+    // "noImplicitThis": true, // 不允许this有隐式的any类型
+    /* 是否生成JS文件，这个一般比较少用,这个build目录下将没有任何文件,但是会进行编译,有错误会抛出 */
+    "noEmit": false,
+    /* 生成的JS文件存放位置, 默认和.ts文件同位置 */
+    "outDir": "./filejs",
+    /* 
+    指定输出文件目录(用于输出)，用于控制输出目录结构
+    如果我们tsconfig使用如下配置, 这个时候我们生成了一个虚拟的根目录,这个根目录下存放了version2,version3目录下文件
+    {
+      "compilerOptions": {
+        "rootDirs": [
+          "src/version2",
+          "src/version3",
+        ],
+    }
+    我们的项目目录如下,此时我们在test.ts中引用demo就可以这样使用了 import demo from './demo',
+    -- src
+    version1
+        test.ts
+    version2
+        demo.ts
+    test2.ts
+    一般不动这个配置
+    */
+    // "rootDir": "../",
+    // "incremental": true, // 只编译修改过的文件,这个时候会生成tsconfig.tsbuildinfo, 下次编译的时候会进行对比只编译修改过的文件,可提高编译速度
+    // "tsBuildInfoFile": "./buildFile", // 增量编译文件的存储位置
+    // "diagnostics": true, // 打印诊断信息
+    /* 如果设为true. 编译每个ts文件之后会生成一个js文件和一个声明文件,
+         declaration和allowJs不能同时设为true */
+    // "declaration": true,
+    // "declarationDir": "./file", // 指定生成声明文件存放目录
+    // "emitDeclarationOnly": true, // 只生成声明文件，而不会生成js文件
+    // "inlineSourceMap": true, // 生成目标文件的inline SourceMap，inline SourceMap会包含在生成的js文件中
+    // "declarationMap": true, // 为声明文件生成sourceMap
+    /* 是否删除生成的JS文件中的注释, 减少代码量 */
+    "removeComments": true,
+    // "noEmitOnError": true, // 发送错误时不输出任何文件(不生成js文件)
+    // "noEmitHelpers": true, // 不生成helper函数，减小体积，需要额外安装，常配合importHelpers一起使用
+    /* 降级遍历器实现，如果目标源是es3/5，那么遍历器会有降级的实现, JS版本不同,一些实现不同,实际会有差别 */
+    // "downlevelIteration": true,
+    // "noUnusedLocals": true, // 检查只声明、未使用的局部变量(只提示不报错)
+    // "noUnusedParameters": true, // 检查未使用的函数参数(只提示不报错)
+    // "noFallthroughCasesInSwitch": true, // 防止switch语句贯穿(即如果没有break语句后面不会执行)
+    // "noImplicitReturns": true, //每个分支都会有返回值
+    // "allowUmdGlobalAccess": true, // 允许在模块中全局变量的方式访问umd模块
+    /** 声明文件目录, 默认为 node_modules/@types 文件 */
+    // "typeRoots": [],
+    /* types用来指定需要包含的模块, 只有在这里列出的模块的声明文件才会被加载进来 */
+    "types": ["node", "react", "react-dom", "webpack"],
+    /* 
+    假设我们路径如下,此时我们在test.ts中引用 import test2 from '../test2',
+      -- src
+      version1
+          test.ts
+      version2
+          demo.ts
+      test2.ts
+      如果我们设置"baseUrl": "./src" 那么我们在ts中引入test2可以写为
+      import test2 from 'test2',需要注意的是只有我们引用的是绝对路径的时候才会使用baseUrl去解析文件 
+      一般为 "./"
+      */
+    "baseUrl": "./",
+    /*  路径映射,类似路径别名
+    如果我们tsconfig使用如下配置
+    {
+      "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+          "*": [
+            "*",
+            "version2/*"
+          ]
+        }
+    } 
+    我们的项目目录如下,此时我们在test.ts中引用 import test2 from 'test2',
+    首先匹配 baseUrl/test2如果找到则停止否则开始寻找 baseUrl/version2/test2
+    -- src
+    version1
+        test.ts
+    version2
+        demo.ts
+    test2.ts
+    */
+    // 这里只是声明的@/的意义, 让ts知道@代表src,从而获得vscode提示
+    // 需要使用webpack或者其他插件来配置@为对应的src
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  // 指定需要编译文件 否则默认当前目录下除了exclude之外的所有.ts, .d.ts,.tsx 文件
+  "include": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.ts", "tests/**/*.tsx"],
+  // 指定需要编译文件 否则默认当前目录下除了exclude之外的所有.ts, .d.ts,.tsx 文件
+  // "files": [
+  //   "./src/**/*"
+  // ],
+  // 不编译某些文件, 一般不编译node_modules
+  "exclude": ["node_modules"]
+}

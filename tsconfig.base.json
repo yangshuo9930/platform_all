@@ -7,5 +7,11 @@
     "allowJs": true,  // 允许JS
     "noUnusedLocals": false, // 没有使用不报错
     "noUnusedParameters": false, // 没有使用不报错
-  }
+  },
+  "include": [], // 除 exclude 外的所有文件
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.js"
+  ]
 }

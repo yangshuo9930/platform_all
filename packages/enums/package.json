@@ -1,0 +1,12 @@
+{
+  "name": "@monorepo/enums",
+  "version": "1.0.0",
+  "description": "项目常用枚举, 包括http状态码,路由地址,屏幕栅格分列等等",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
