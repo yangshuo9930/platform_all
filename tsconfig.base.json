@@ -7,8 +7,8 @@
     "allowJs": true,  // 允许JS
     "noUnusedLocals": false, // 没有使用不报错
     "noUnusedParameters": false, // 没有使用不报错
+    // "preserveSymlinks": true // 不把符号链接解析为其真实路径；将符号链接文件视为真正的文件。
   },
-  "include": [], // 除 exclude 外的所有文件
   "exclude": [
     "node_modules",
     "dist",

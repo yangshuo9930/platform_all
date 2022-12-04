@@ -27,7 +27,7 @@ module.exports = defineConfig({
     // "vue"
   ],
   rules: {
-    '@typescript-eslint/ban-ts-ignore': 'off', // 禁止忽略ts
+    // '@typescript-eslint/ban-ts-ignore': 'off', // 禁止忽略ts
     '@typescript-eslint/explicit-function-return-type': 'off', // 不必须写函数返回类型
     '@typescript-eslint/no-explicit-any': 'off', // 允许任何any
     '@typescript-eslint/no-var-requires': 'off',
