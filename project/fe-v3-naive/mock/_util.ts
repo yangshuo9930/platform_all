@@ -29,12 +29,12 @@ export function resultPageSuccess<T = any>(
 }
 
 export function resultError(message = 'Request failed', { code = -1, data = null } = {}) {
-  return {
+  return Mock.mock({
     code,
     data,
     message,
     type: 'error'
-  }
+  })
 }
 
 export function pagination<T = any>(pageNo: number, pageSize: number, array: T[]): T[] {
@@ -60,7 +60,7 @@ export function doCustomTimes(times: number, callback: any) {
 export interface requestParams {
   method: string
   body: any
-  headers?: { token?: string }
+  headers?: { authorization: string }
   query: any
 }
 
@@ -69,5 +69,5 @@ export interface requestParams {
  *
  */
 export function getRequestToken({ headers }: requestParams): string | undefined {
-  return headers?.token
+  return headers?.authorization
 }

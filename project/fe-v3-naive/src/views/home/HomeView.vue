@@ -226,7 +226,7 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { getConsoleInfo } from '@/api/mock/home'
-import { searchExpertResource } from '@/api/home/home'
+// import { searchExpertResource } from '@/api/home/home'
 import VisiTab from './components/VisiTab.vue'
 import { CountTo } from '@/components/CountTo/index'
 import {
@@ -333,12 +333,12 @@ onMounted(async () => {
   volume.value = volume
   loading.value = false
 
-  const res = await searchExpertResource({
-    page: 1,
-    size: 15
-  })
+  // const res = await searchExpertResource({
+  //   page: 1,
+  //   size: 15
+  // })
 
-  console.log('---测试专家系统接口---', res)
+  // console.log('---测试专家系统接口---', res)
 })
 </script>
 

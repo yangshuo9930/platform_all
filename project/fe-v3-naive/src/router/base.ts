@@ -63,17 +63,17 @@ export const RedirectRoute: AppRouteRecordRaw = {
   ]
 }
 
-/** 统一认证平台回跳 */
-export const SigninOidcRoute: AppRouteRecordRaw = {
-  path: '/signin-oidc',
-  name: 'SigninOidc',
-  component: () => import('@/views/signin-oidc/index.vue'),
-  meta: {
-    title: '',
-    hideBreadcrumb: true,
-    ignoreAuth: true
-  }
-}
+/** 统一认证平台回跳 -- 暂时不使用 */
+// export const SigninOidcRoute: AppRouteRecordRaw = {
+//   path: '/signin-oidc',
+//   name: 'SigninOidc',
+//   component: () => import('@/views/signin-oidc/index.vue'),
+//   meta: {
+//     title: '',
+//     hideBreadcrumb: true,
+//     ignoreAuth: true
+//   }
+// }
 
 export const NotFountPageRoute: Array<AppRouteRecordRaw> = [
   {

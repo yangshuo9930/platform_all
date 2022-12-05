@@ -150,7 +150,7 @@ import {
 import { useRouter, useRoute } from 'vue-router'
 import components from './components'
 import { NDialogProvider, useDialog, useMessage } from 'naive-ui'
-import { TABS_ROUTES } from '@/store/mutation-types'
+import { TABS_ROUTES } from '@monorepo/config/fe-v3-naive/cacheSetting'
 import { useUserStore } from '@/store/modules/user'
 import { useLockscreenStore } from '@/store/modules/lockscreen'
 import ProjectSetting from './ProjectSetting.vue'
@@ -263,19 +263,18 @@ export default defineComponent({
         positiveText: '确定',
         negativeText: '取消',
         onPositiveClick: () => {
-          userStore.authLogout().then(() => {
+          userStore.logout().then(() => {
             message.success('成功退出登录')
             // 移除标签页
             localStorage.removeItem(TABS_ROUTES)
-            window.location.reload()
-            // router
-            //   .replace({
-            //     name: 'Login',
-            //     query: {
-            //       redirect: route.fullPath
-            //     }
-            //   })
-            //   .finally(() => location.reload())
+            router
+              .replace({
+                name: 'Login',
+                query: {
+                  redirect: route.fullPath
+                }
+              })
+              .finally(() => location.reload())
           })
         },
         onNegativeClick: () => {}
@@ -337,8 +336,7 @@ export default defineComponent({
     const avatarSelect = (key) => {
       switch (key) {
         case 1:
-          let goCenterUrl = `${import.meta.env.VITE_AUTH_URL}/account/settings/base`
-          window.open(goCenterUrl)
+          router.push({ name: 'Setting' })
           break
         case 2:
           doLogout()

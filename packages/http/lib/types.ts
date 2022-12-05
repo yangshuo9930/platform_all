@@ -60,11 +60,9 @@ export interface RequestOptions {
 
 export interface Result<T = any> {
   code: number
-  message: string
   data?: T
-  success: boolean
-  timestamp: string
+  message: string
+  type?: 'success' | 'error' | 'warning'
+  timestamp?: string
   extras?: any
-  // type?: 'success' | 'error' | 'warning'
-  // result?: T
 }

@@ -1,6 +1,7 @@
 import { isObject } from './lib/is/index'
 export * from './lib/is'
 export * from './lib/Storage'
+export * from './browser-type'
 
 /**
  *  找到对应的节点

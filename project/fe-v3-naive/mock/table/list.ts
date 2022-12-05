@@ -23,11 +23,11 @@ const tableList = (pageSize) => {
 export default [
   //表格数据列表
   {
-    url: '/api/table/list',
+    url: '/mock/table/list',
     timeout: 500,
     method: 'get',
-    response: ({ query }) => {
-      const { page = 1, pageSize = 10 } = query
+    response: (req) => {
+      const { page = 1, pageSize = 10 } = req.query
       const list = tableList(Number(pageSize))
       return resultSuccess({
         page: Number(page),

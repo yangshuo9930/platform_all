@@ -75,7 +75,7 @@ import { useMessage, useDialog } from 'naive-ui'
 import { ResultEnum } from '@/enums/httpEnum'
 import componentSetting from '@/settings/componentSetting'
 import { useGlobSetting } from '@/hooks/setting'
-import { isString } from '@/utils/is'
+import { isString } from '@monorepo/utils'
 
 const globSetting = useGlobSetting()
 

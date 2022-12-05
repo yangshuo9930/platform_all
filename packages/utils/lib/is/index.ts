@@ -21,6 +21,9 @@ export const isDef = <T = unknown>(val?: T): val is T => {
   return typeof val !== 'undefined'
 }
 
+export const isUnDef = <T = unknown>(val?: T): val is T => {
+  return !isDef(val)
+}
 /**
  * @description: 是否为对象
  */
@@ -104,4 +107,12 @@ export function isImageDom(o: Element) {
 
 export function isNull(val: unknown): val is null {
   return val === null
+}
+
+export function isNullAndUnDef(val: unknown): val is null | undefined {
+  return isUnDef(val) && isNull(val)
+}
+
+export function isNullOrUnDef(val: unknown): val is null | undefined {
+  return isUnDef(val) || isNull(val)
 }

@@ -50,7 +50,7 @@
     "mock/**/*.ts",
     "components.d.ts",
     "vite.config.ts"
-  ],
+, "../../packages/utils/browser-type.ts"  ],
   "exclude": [
     "node_modules",
     "dist",

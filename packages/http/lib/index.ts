@@ -10,7 +10,8 @@ import { PageEnum } from '@monorepo/enums/lib/pageEnum'
 import { deepMerge, isUrl, setObjToUrlParams, isString, storage } from '@monorepo/utils'
 
 import { RequestOptions, Result, CreateAxiosOptions } from './types'
-import { TOKEN_KEY } from '@monorepo/config/web-vue3/cacheSetting'
+import { TOKEN_KEY } from '@monorepo/config/fe-v3-naive/cacheSetting'
+import { MOCK_URL } from '@monorepo/config/fe-v3-naive/httpSetting'
 
 const urlPrefix = ''
 
@@ -284,7 +285,7 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
 // mock接口地址
 export const httpMock = createAxios({
   requestOptions: {
-    // apiUrl: import.meta.env.VITE_MOCK_API
+    apiUrl: MOCK_URL
   },
   tokenKey: TOKEN_KEY,
   authenticationScheme: 'Bearer'

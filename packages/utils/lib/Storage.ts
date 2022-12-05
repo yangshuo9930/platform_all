@@ -6,7 +6,7 @@ const DEFAULT_CACHE_TIME = 60 * 60 * 24 * 7
  * @param {string=} prefixKey -
  * @param {Object} [storage=localStorage] - sessionStorage | localStorage
  */
-export const createStorage = ({ prefixKey = 'monorepo-', storage = localStorage } = {}) => {
+export const createStorage = ({ prefixKey = '', storage = localStorage } = {}) => {
   /**
    * 本地缓存类
    * @class Storage

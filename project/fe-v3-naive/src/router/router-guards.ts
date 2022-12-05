@@ -2,18 +2,18 @@ import type { RouteRecordRaw } from 'vue-router'
 import { isNavigationFailure, Router } from 'vue-router'
 import { useUserStoreWidthOut } from '@/store/modules/user'
 import { useAsyncRouteStoreWidthOut } from '@/store/modules/asyncRoute'
-import { ACCESS_TOKEN } from '@/store/mutation-types'
-import { storage } from '@/utils/Storage'
+import { TOKEN_KEY as ACCESS_TOKEN } from '@monorepo/config/fe-v3-naive/cacheSetting'
+import { storage } from '@monorepo/utils'
 import { PageEnum } from '@/enums/pageEnum'
 import { ErrorPageRoute } from '@/router/base'
 import { useGlobSetting } from '@/hooks/setting'
 
 type PageEnumKey = `${PageEnum}`
 
-// const LOGIN_PATH = PageEnum.BASE_LOGIN
+const LOGIN_PATH = PageEnum.BASE_LOGIN
 const { project_title } = useGlobSetting()
 
-const whitePathList: PageEnumKey[] = [] // 不需要重定向的白名单列表
+const whitePathList: PageEnumKey[] = [LOGIN_PATH] // 不需要重定向的白名单列表
 
 export function createRouterGuards(router: Router) {
   const userStore = useUserStoreWidthOut()
@@ -24,10 +24,10 @@ export function createRouterGuards(router: Router) {
     const Loading = window['$loading'] || null
     Loading && Loading.start()
 
-    // if (from.path === LOGIN_PATH && to.name === 'errorPage') {
-    //   next(PageEnum.BASE_HOME)
-    //   return
-    // }
+    if (from.path === LOGIN_PATH && to.name === 'errorPage') {
+      next(PageEnum.BASE_HOME)
+      return
+    }
 
     // Whitelist can be directly entered
     if (whitePathList.includes(to.path as PageEnum)) {
@@ -45,20 +45,20 @@ export function createRouterGuards(router: Router) {
       }
 
       // 重定向到Login页面
-      // const redirectData: { path: string; replace: boolean; query?: Recordable<string> } = {
-      //   path: LOGIN_PATH,
-      //   replace: true
-      // }
-      // if (to.path) {
-      //   redirectData.query = {
-      //     ...redirectData.query,
-      //     redirect: to.path
-      //   }
-      // }
-      // next(redirectData)
+      const redirectData: { path: string; replace: boolean; query?: Recordable<string> } = {
+        path: LOGIN_PATH,
+        replace: true
+      }
+      if (to.path) {
+        redirectData.query = {
+          ...redirectData.query,
+          redirect: to.path
+        }
+      }
+      next(redirectData)
 
       // 重定向到登录页面
-      userStore.signinRedirect()
+      // userStore.signinRedirect()
       return
     }
 
@@ -68,20 +68,12 @@ export function createRouterGuards(router: Router) {
       return
     } else {
       // 获取用户信息, 补全用户权限信息, 跳转正确路由
-      const dynamicMenuList = await userStore.getAuthInfo()
-      //
-      const routes = await asyncRouteStore.generateRoutesAuth(dynamicMenuList)
+      const userInfo = await userStore.GetInfo()
+      const routes = await asyncRouteStore.generateRoutes(userInfo)
       // 动态添加可访问路由表
       routes.forEach((item) => {
         router.addRoute(item as unknown as RouteRecordRaw)
       })
-
-      // const userInfo = await userStore.GetInfo()
-      // const routes = await asyncRouteStore.generateRoutes(userInfo)
-      // 动态添加可访问路由表
-      // routes.forEach((item) => {
-      //   router.addRoute(item as unknown as RouteRecordRaw)
-      // })
     }
 
     //添加404
@@ -96,6 +88,7 @@ export function createRouterGuards(router: Router) {
     asyncRouteStore.setDynamicAddedRoute(true)
     next(nextData)
     Loading && Loading.finish()
+    return
   })
 
   router.afterEach((to, _, failure) => {

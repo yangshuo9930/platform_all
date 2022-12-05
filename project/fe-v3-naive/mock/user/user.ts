@@ -1,5 +1,5 @@
 import Mock from 'mockjs'
-import { resultSuccess } from '../_util'
+import { resultSuccess, getRequestToken, resultError } from '../_util'
 
 const Random = Mock.Random
 
@@ -39,7 +39,7 @@ const adminInfo = {
 
 export default [
   {
-    url: '/api/login',
+    url: '/mock/login',
     timeout: 1000,
     method: 'post',
     response: () => {
@@ -47,12 +47,12 @@ export default [
     }
   },
   {
-    url: '/api/admin_info',
+    url: '/mock/admin_info',
     timeout: 1000,
     method: 'get',
-    response: () => {
-      // const token = getRequestToken(request);
-      // if (!token) return resultError('Invalid token');
+    response: (request) => {
+      const token = getRequestToken(request)
+      if (!token) return resultError('Invalid token', { code: 401 })
       return resultSuccess(adminInfo)
     }
   }

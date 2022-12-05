@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { IS_LOCKSCREEN, LOCK_PWD } from '@/store/mutation-types'
-import { storage } from '@/utils/Storage'
+import { IS_LOCKSCREEN, LOCK_PWD } from '@monorepo/config/fe-v3-naive/cacheSetting'
+import { storage } from '@monorepo/utils'
 
 // 长时间不操作默认锁屏时间
 const initTime = 60 * 60

@@ -4,7 +4,7 @@ import { PageEnum } from '@/enums/pageEnum'
 import { RedirectName } from '@/router/constant'
 
 import { useRouter } from 'vue-router'
-import { isString } from '@/utils/is'
+import { isString } from '@monorepo/utils'
 import { unref } from 'vue'
 
 export type RouteLocationRawEx = Omit<RouteLocationRaw, 'path'> & { path: PageEnum }

@@ -1,4 +1,4 @@
-// import { adminMenus } from '@/api/system/menu' //
+import { adminMenus } from '@/api/mock/system/menu' //
 import { constantRouterIcon } from './router-icons'
 import { RouteRecordRaw } from 'vue-router'
 import { Layout, ParentLayout } from '@/router/constant'

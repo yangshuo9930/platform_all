@@ -89,8 +89,8 @@ import {
   nextTick
 } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { storage } from '@/utils/Storage'
-import { TABS_ROUTES } from '@/store/mutation-types'
+import { storage } from '@monorepo/utils'
+import { TABS_ROUTES } from '@monorepo/config/fe-v3-naive/cacheSetting'
 import { useTabsViewStore } from '@/store/modules/tabsView'
 import { useAsyncRouteStore } from '@/store/modules/asyncRoute'
 import { RouteItem } from '@/store/modules/tabsView'
