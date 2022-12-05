@@ -10,9 +10,7 @@
     "lint:prettier": "prettier --write --loglevel warn \"{project,packages}/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
     "prepare": "husky install"
   },
-  "keywords": [],
   "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
@@ -38,13 +36,21 @@
   "lint-staged": {
     "packages/**/*.{js,jsx,ts,tsx,json}": [
       "prettier --write",
-      "eslint",
+      "eslint --fix",
       "git add"
     ],
     "project/**/*.{js,jsx,ts,tsx,json,vue}": [
       "prettier --write",
-      "eslint",
+      "eslint --fix",
       "git add"
     ]
-  }
+  },
+  "keywords": [
+    "pnpm",
+    "naive-ui",
+    "vue3",
+    "ts",
+    "tsx",
+    "typescript"
+  ]
 }
