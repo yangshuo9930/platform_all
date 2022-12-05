@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .transition {
+      width: 200px;
+      height: 40px;
+      background-color: pink;
+      transition: 2s .5s;
+      transition-property: transform, background-color;
+    }
+
+    .transition:hover {
+      /* margin-left: 200px; */
+      background-color: red;
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="transition">123</div>
+  <!-- transition-property：设置元素中参与过渡的属性；
+  transition-duration：设置元素过渡的持续时间；
+  transition-timing-function：设置元素过渡的动画类型；
+  transition-delay：设置过渡效果延迟的时间，默认为 0；
+  transition：简写属性，用于同时设置上面的四个过渡属性。 -->
+  <script>
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    main {
+      height: 180vh;
+    }
+
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- IntersectingObserver: 提供了一种异步观察目标元素与其祖先元素或顶级文档视窗交叉状态的方法 -->
+  <main>
+    使用 IntersectingObserver API 懒加载图片
+    <img src="../../uploads/003.gif" alt="3">
+  </main>
+  <img class="png" data-src="../../uploads/001.jpg" alt="1">
+  <img class="png" data-src="../../uploads/002.jpg" alt="2">
+  <img class="png" data-src="../../uploads/004.jpg" alt="4">
+
+  <main>
+    使用 IntersectingObserver API 懒加载接口
+  </main>
+  <img src="" alt="5" class="svg">
+
+  <script src="../ajax.js"></script>
+  <!-- 图片懒加载 -->
+  <script>
+    const ImgRef = document.querySelectorAll('.png')
+
+    const options = {
+      root: null, // DOM元素，但默认值为null，也就是视口区域
+      thresholds: 1, // 阈值, 默认值1
+    }
+    // 参数1 callback
+    // callback是添加监听后，当监听目标发生滚动变化时触发的回调函数。接收一个参数entries，
+    // 参数2 options
+    const observe = new IntersectionObserver((entrys) => {
+      console.log(entrys)
+      entrys.forEach(item => {
+        if (item.isIntersecting) {
+          item.target.src = item.target.getAttribute('data-src')
+          // observe.unobserve(item.target)
+          observe.disconnect() //   // disconnect()	使IntersectionObserver对象停止全部监听工作
+        }
+      })
+    }, options)
+
+    Array.from(ImgRef).forEach(item => {
+      observe.observe(item)
+    })
+
+      // isIntersecting
+      // 返回一个布尔值，下列两种操作均会触发callback：1. 如果目标元素出现在root可视区，返回true。2. 如果从root可视区消失，返回false
+
+      //intersectionRatio
+      // 返回目标元素出现在可视区的比例
+
+      // boundingClientRect
+      // 返回包含目标元素的边界信息，返回结果与element.getBoundingClientRect() 相同
+
+      // intersectionRect
+      // 用来描述root和目标元素的相交区域
+
+      //rootBounds
+      // 用来描述交叉区域观察者(intersection observer)中的根.
+
+      //target
+      // 目标元素：与根出现相交区域改变的元素 (Element)
+
+      // time
+      // 返回一个记录从 IntersectionObserver 的时间原点到交叉被触发的时间的时间
+
+  </script>
+
+  <!-- 数据懒加载 -->
+  <script>
+    const svgRef = document.querySelector('.svg')
+
+    const observe1 = new IntersectionObserver(([{ isIntersecting, target }]) => {
+      if (isIntersecting) { // 进入可视区域后发起ajax请求
+        $.ajax({
+          url: 'http://localhost:8080/api/captcha',
+          data: { test: 'test' },
+          success: function (res) {
+            target.src = res.data.svg
+            observe1.unobserve(target)
+          }
+        })
+      }
+    }, options)
+
+    observe1.observe(svgRef)
+  </script>
+</body>
+
+</html>

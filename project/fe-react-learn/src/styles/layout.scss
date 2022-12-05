@@ -1,0 +1,24 @@
+#app {
+  .app-container {
+    min-height: 100%;
+    transition: margin-left 0.28s;
+    margin-left: $sideBarWidth;
+    position: relative;
+  }
+
+  .app-siderBar {
+    transition: width 0.28s;
+    width: $sideBarWidth  !important;
+    // background-color: $menuBg;
+    // background-image: linear-gradient(to bottom, #104e91, #3ac183);
+    background-color: #545c64 !important;
+    height: 100%;
+    position: fixed;
+    font-size: 0px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1001;
+    overflow: hidden;
+  }
+}

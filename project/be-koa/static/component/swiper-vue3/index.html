@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+  <div id="root"></div>
+  <!-- CDN引入 v3 -->
+  <script src="https://unpkg.com/vue@next"></script>
+  <template id="app">
+    <div class="xtx-carousel" @mouseenter="stop" @mouseleave="play">
+      <ul class="carousel-body">
+        <li class="carousel-item" :class="{ fade: active === index }" v-for="(item, index) in list" :key="item.id">
+          <!-- <RouterLink to="#"> -->
+          <img :src="item.imgUrl" alt="" />
+          <!-- </RouterLink> -->
+        </li>
+      </ul>
+      <a href="javascript:;" class="carousel-btn prev" @click="prev">
+        <i class="iconfont icon-angle-left"></i>
+      </a>
+      <a href="javascript:;" class="carousel-btn next" @click="next">
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+      <div class="carousel-indicator">
+        <span :class="{ active: active === index }" v-for="(item, index) in list" :key="item.id"
+          @mouseenter="active = index"></span>
+      </div>
+    </div>
+  </template>
+  <script>
+    const app = Vue.createApp({
+      template: '#app',
+      data () {
+        return {
+          name: 'data-老王',
+          age: 44
+        }
+      },
+      setup () {
+        const imgs = [
+          '../../uploads/1.jpg',
+          '../../uploads/2.jpg',
+          '../../uploads/3.jpg',
+          '../../uploads/4.jpg',
+          '../../uploads/5.jpg',
+        ]
+
+        const active = Vue.ref(0)
+        const sliders = Vue.ref([])
+
+        const list = Vue.computed(() => {
+          imgs.forEach((item, index) => {
+            sliders.value.push({
+              id: index,
+              imgUrl: item,
+            })
+          })
+          return sliders.value
+        })
+
+        let timer = -1
+        const play = () => {
+          // // 如果没有自动播放，就不自动播放
+          // if (!props.autoPlay) return
+          clearInterval(timer)
+          timer = window.setInterval(() => {
+            if (active.value >= list.value.length - 1) {
+              active.value = 0
+            } else {
+              active.value++
+            }
+          }, 1500)
+        }
+        // 结束自动播放
+        const stop = () => {
+          clearInterval(timer)
+        }
+        Vue.onMounted(() => {
+          play()
+        })
+        Vue.onUnmounted(() => {
+          stop()
+        })
+
+        // 左右箭头
+        const prev = () => {
+          if (active.value === 0) {
+            active.value = list.value.length - 1
+          } else {
+            active.value--
+          }
+        }
+        const next = () => {
+          if (active.value === list.value.length - 1) {
+            active.value = 0
+          } else {
+            active.value++
+          }
+        }
+
+        return {
+          active,
+          list,
+          play,
+          stop,
+          prev,
+          next
+        }
+      },
+
+    })
+
+    app.mount('#root')
+
+
+    // 测试 iframe
+    function hello () { console.log('this is 2.html') }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <link rel="stylesheet" href="../css/reset.css" />
+  <style>
+    .wrap {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .scroll-container {
+      height: 100%;
+      overflow: auto;
+    }
+
+    .item {
+      height: 200px;
+    }
+  </style>
+
+  <body>
+    <div id="root"></div>
+    <!-- CDN引入 v3 -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <template id="el">
+      <div class="wrap">
+        <ul ref="scrollBoxRef" class="scroll-container" @scroll="handleScroll">
+          <div :style="blank">
+            <li class="item" :class="item" v-for="(item,index) in showList" :key="item">
+              <!-- <img :src="`../uploads/${item}.jpg`"> -->
+              {{item}}
+            </li>
+          </div>
+        </ul>
+      </div>
+    </template>
+    <script>
+      const app = Vue.createApp({
+        template: '#el',
+        setup() {
+          const state = Vue.reactive({
+            list: [],
+            itemSize: 0,
+            scrollBoxHeight: 0,
+            containerSize: 0,
+            startIndex: 0,
+          })
+
+          for (let i = 1; i < 10; i++) {
+            for (let j = 1; j < 10; j++) {
+              state.list.push(`${i} - ${j}`)
+            }
+          }
+          console.log(state.list)
+
+          const scrollBoxRef = Vue.ref(null)
+
+          Vue.onMounted(() => {
+            state.scrollBoxHeight = scrollBoxRef.value.offsetHeight
+            state.itemSize = 200
+            getMaxNum()
+            // 优化: 屏幕大小改变时调整
+            window.onresize = getMaxNum
+            window.onreadystatechange = getMaxNum
+          })
+
+          const getMaxNum = () => {
+            state.containerSize = ~~(state.scrollBoxHeight / state.itemSize) + 2
+          }
+
+          const handleScroll = () => {
+            const scrollTop = scrollBoxRef.value.scrollTop
+            state.startIndex = ~~(scrollBoxRef.value.scrollTop / state.itemSize) + 2
+            // console.log(state, endIndex)
+
+            // 判断处理到底部添加新数据, 因为showList的长度几乎是固定大小, 会加载到底部
+            // if (state.startIndex + state.containerSize > showList.value.length - 1) {
+            //   console.log('底部----------------')
+            // }
+
+            // 对滚动事件触发频繁优化 (快速滚动到底部持续触发加载新数据bug)
+          }
+
+          const endIndex = Vue.computed(() => {
+            return state.startIndex + state.containerSize * 2 // *2 是为了快速滚动不出现白屏, 特别是性能差的设备
+          })
+
+          // 依据开始索引和结束索引值, 得到需要截取的数组数据
+          const showList = Vue.computed(() => {
+            let startIndex = 0
+            if (state.startIndex <= state.containerSize) {
+              // 真正截取的数据长度比计算的大一些, 解决快速滚动白屏问题
+              startIndex = 0
+            } else {
+              startIndex = state.startIndex - state.containerSize
+            }
+            return state.list.slice(startIndex, endIndex.value)
+          })
+
+          // 解决滚动时页面抖动的问题
+          const blank = Vue.computed(() => {
+            let startIndex = 0
+            if (state.startIndex <= state.containerSize) {
+              // 和截取出的数据 => 同理
+              startIndex = 0
+            } else {
+              startIndex = state.startIndex - state.containerSize
+            }
+            return {
+              paddingTop: startIndex * state.itemSize + 'px',
+              paddingBottom: (state.list.length - endIndex.value) * state.itemSize + 'px',
+            }
+          })
+
+          return {
+            ...Vue.toRefs(state),
+            scrollBoxRef,
+            handleScroll,
+            showList,
+            blank,
+          }
+        },
+      })
+
+      app.mount('#root')
+    </script>
+  </body>
+</html>

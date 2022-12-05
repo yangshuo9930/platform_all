@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <!-- CDN引入 v3 -->
+    <!-- <script src="https://unpkg.com/vue@next"></script> -->
+    <!-- v2 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <!-- 使用原生 ES Modules -->
+    <!-- <script type="module">
+    import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.esm.browser.js'
+  </script> -->
+    <template id="app">
+      <div>
+        vue2必须要有一个根节点
+        <span v-if="isShow" ref="divRef">123</span>
+        <button @click="clickFn">显示123</button>
+      </div>
+    </template>
+    <script>
+      // const app = Vue.createApp({
+      //   template: `<h2>Vue, hello</h2>`,
+      // }).mount('#root')
+
+      const app = new Vue({
+        el: '#root',
+        template: '#app',
+        data() {
+          return {
+            name: '小王',
+            age: 12,
+            isShow: false,
+          }
+        },
+        beforeCreate() {
+          console.log('组件生成前', this, this.name)
+        },
+        created() {
+          console.log('组件生成', this, this.name)
+        },
+        beforeMount() {
+          const h = document.querySelector('h2')
+          console.log('组件dom生成前', this, h)
+        },
+        mounted() {
+          const h = document.querySelector('h2')
+          console.log('组件dom生成', this, h)
+        },
+        beforeDestroy() {
+          // console.log(this.name)
+        },
+        destroyed() {
+          console.log(this.name)
+        },
+        methods: {
+          clickFn() {
+            this.isShow = true
+
+            console.log(document.querySelector('span'))
+            console.log(this.$refs.divRef)
+          },
+          destroy() {
+            this.$destroy()
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+这是一个用来学习koa2和MongoDB的后端项目
+config // 全局配置,如数据库地址, 数据库账户密码等
+controller // 针对接口的路由处理函数
+database // 数据库连接代码
+middleware // 自定义的中间价
+router // 路由配置
+service // 可复用的业务逻辑代码
+static // 静态资源文件
+app.js // 主入口

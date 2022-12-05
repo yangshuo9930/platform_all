@@ -1,0 +1,90 @@
+{
+  "easycom": {
+    // 自动扫描注册引入uni-ui
+    "autoscan": true,
+    "custom": {
+      "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+    }
+  },
+  "pages": [
+    {
+      "path": "pages/home/home",
+      "style": {
+        "navigationBarTitleText": "首页-"
+      }
+    },
+    {
+      "path": "pages/category/category",
+      "style": {
+        "navigationBarTitleText": "商品"
+      }
+    },
+    {
+      "path": "pages/cart/cart",
+      "style": {
+        "navigationBarTitleText": "我的购物车"
+      }
+    },
+    {
+      "path": "pages/my/my",
+      "style": {
+        "navigationBarTitleText": "我的"
+      }
+    }
+  ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "static/tabs/icon_home@3x.png",
+        "selectedIconPath": "static/tabs/icon_home_active@3x.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "分类",
+        "iconPath": "static/tabs/icon_category@3x.png",
+        "selectedIconPath": "static/tabs/icon_category_active@3x.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "static/tabs/icon_cart@3x.png",
+        "selectedIconPath": "static/tabs/icon_cart_active@3x.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "static/tabs/icon_user@3x.png",
+        "selectedIconPath": "static/tabs/icon_user_active@3x.png"
+      }
+    ],
+    "color": "#000000",
+    "selectedColor": "#C00000"
+  },
+  "subPackages": [
+    {
+      "root": "pages_sub1",
+      "pages": [
+        {
+          "path": "product-detail/product-detail",
+          "style": {
+            "navigationBarTitleText": "商品详情"
+          }
+        },
+        {
+          "path": "product-list/product-list",
+          "style": {
+            "navigationBarTitleText": "商品列表"
+          }
+        }
+      ]
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "麦乐优购",
+    "navigationBarBackgroundColor": "#C00000",
+    "backgroundColor": "#FFFFFF"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "extends": "eslint-config-egg/typescript",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "semi": [0],
+    "@typescript-eslint/semi": [2, "never"], // 如果加分号的话报错, 1警告, "never" | "alway"
+    "no-trailing-spaces": "off",
+    "array-bracket-spacing": "off",
+    "@typescript-eslint/no-unused-vars": [2]
+  }
+}

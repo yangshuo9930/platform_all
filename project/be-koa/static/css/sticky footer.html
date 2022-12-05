@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    .box {
+      display: grid;
+      min-height: 120%;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .child {
+      min-height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div>header</div>
+    <div class="child">1 1 1 1 1</div>
+    <div>footer</div>
+  </div>
+  <script>
+    let obj = {
+      a: 1,
+    }
+    console.log(obj.valueOf())
+    console.log(obj.toString())
+  </script>
+</body>
+
+</html>

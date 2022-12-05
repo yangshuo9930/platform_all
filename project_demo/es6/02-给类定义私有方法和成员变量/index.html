@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // ES13之前，我们是不可能给类定义私有成员的。
+    // 所以一些程序员为了表示某个成员变量是一个私有属性，会给该属性名添加一个下划线(_)作为后缀。
+    // 可是这只能作为程序员之间的君子之约来使用，因为这些变量其实还是可以被外界访问到的。
+
+    // 在ES13中，我们只需要给我们的属性名添加一个hashtag(#)前缀，这个属性就变成私有的了。
+    // 当我们的属性变为私有后，任何外界对其的访问都会出错哦。即使是通过类本身也无法调用
+
+    class Person {
+      constructor(name, property) {
+        this.name = name
+        this.property = property
+      }
+      #color = ['black', 'white']
+      sayHi () {
+        console.log('hi', this.name, this.#color)
+      }
+      #sayColor () {
+        console.log('hi', this.name, this.#color)
+      }
+    }
+
+    let p = new Person('小王', 12)
+
+    console.log(p) //  Person { name: '小王', property: 12 }
+    p.sayHi()
+
+    // p.#sayColor()
+    console.log(Person.#color) // error
+    console.log(p.#color) //报错: SyntaxError: Private field '#color' must be declared in an enclosing class
+    // 这里值得一提的是，上面说的SyntaxError是一个编译时抛出的错误，所以你不会等你的代码运行后才知道这个属性被非法访问了。
+
+    // 子类也访问不到 #号的私有属性/方法
+    class Sub extends Person {
+      constructor(name, property) {
+        super(name, property)
+      }
+    }
+
+    let s = new Sub('小S', 20)
+
+    console.log(s)
+    s.sayHi()
+    // s.#sayColor()
+  </script>
+</body>
+
+</html>

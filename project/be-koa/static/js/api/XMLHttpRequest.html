@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <img alt="" width="200" height="200">
+  <button>按钮</button>
+  <script src="../ajax.js"></script>
+  <script>
+    const btn = document.querySelector('button')
+    const img = document.querySelector('img')
+
+    const ajax = () => {
+      $.ajax({
+        url: 'http://localhost:8080/api/captcha',
+        data: { test: 'test' },
+        success: function (res) {
+          img.src = res.data.svg
+        }
+      })
+    }
+
+    const sleep = (delay = 3000) => new Promise((resolve) => setTimeout(resolve, delay))
+
+    btn.addEventListener('click', ajax)
+    btn.click()
+
+    sleep().then(() => {
+      console.log(1)
+    })
+
+  </script>
+</body>
+
+</html>

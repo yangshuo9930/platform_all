@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <!-- CDN引入 v3 -->
+  <script src="https://unpkg.com/vue@next"></script>
+  <template id="app">
+    vue3 setup和data中同时定义数据, setup中的优先级高(setup中必须返回)
+    <p>
+      - {{ name }} -- {{ name }}
+    <p>
+    </p>
+    <p>
+      {{ age }}
+    </p>
+  </template>
+  <script>
+    const app = Vue.createApp({
+      template: '#app',
+      data () {
+        return {
+          name: 'data-老王',
+          age: 44
+        }
+      },
+      setup () {
+        const name = Vue.ref('ref-老王')
+        console.log('setup执行,初始化组件, 在beforeCreate和created之前执行', name.value, this) // undefined
+
+        // onBeforeMount
+        Vue.onBeforeMount(() => {
+          console.log('setup - onBeforeMount')
+        })
+
+        // 获取data中定义的数据
+        const currentInstance = Vue.getCurrentInstance()
+        console.log('setup中获取data的数据', currentInstance.data.name)
+
+        // onMounted
+        Vue.onMounted(() => {
+          console.log('setup  - onMounted')
+          console.log('setup中的onMounted中获取data的数据', currentInstance.data.name)
+        })
+
+        return {
+          name,
+        }
+      },
+      beforeCreate () {
+        console.log('beforeCreate', this.name)
+      },
+      created () {
+        console.log('created', this.name)
+      },
+      beforeMount () {
+        console.log('beforeMount')
+      },
+      mounted () {
+        console.log('mounted')
+      },
+    })
+
+    app.mount('#root')
+  </script>
+</body>
+
+</html>

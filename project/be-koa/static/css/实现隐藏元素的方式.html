@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    .flex-box {
+      display: flex;
+      height: 200px;
+      /*  flex盒子, 有了主轴和侧轴的概念, 所有的子元素沿着主轴排列 */
+      /* 主轴的对齐方式 */
+      justify-content: space-between;
+      /* 侧轴对齐方式 */
+      align-items: center;
+      /* 更换主轴方向  */
+      /* flex-direction: column; */
+      /* flex-wrap: 是否换行 */
+      /* flex-flow: 和谐数学; */
+      /* align-content: space-between; */
+    }
+
+    .flex-box > div {
+      background-color: pink;
+      order: 2;
+      align-self: flex-end;
+    }
+
+    .flex-box > span {
+      background-color: blue;
+      order: 1;
+    }
+
+    .clearfix:after {
+      content: '';
+      clear: both;
+      display: block;
+      visibility: hidden;
+      height: 0;
+    }
+
+    .display {
+      display: none;
+      width: 400px;
+      height: 400px;
+    }
+
+    .visibility {
+      visibility: hidden;
+      width: 400px;
+      height: 400px;
+    }
+
+    .opacity {
+      opacity: 0;
+      width: 400px;
+      height: 400px;
+    }
+
+    .resize {
+      resize: auto;
+      overflow: hidden;
+      background-color: pink;
+    }
+  </style>
+
+  <body>
+    <div class="flex-box">
+      <div>1</div>
+      <span>2</span>
+    </div>
+    <button class="display">none</button>
+    <button class="visibility">hidden</button>
+    <button class="opacity">100</button>
+
+    <div class="resize">123</div>
+    <script>
+      document.querySelector('.visibility').addEventListener('click', () => {
+        console.log(1)
+      })
+
+      document.querySelector('.opacity').addEventListener('click', () => {
+        console.log(2)
+      })
+
+      // offset 元素自身的宽高和相对于offsetParent的偏移 offsetWidth = width + padding + border,
+      // client 元素可视区域的宽高, clientWidth = width + padding clientTop: 相当于上边框的宽度
+      // scroll 元素 scrollWidth: 元素内容的宽度, 和元素本身没有关系, 即使元素overflow: hidden. scrollTop: 元素被卷曲的高低
+    </script>
+  </body>
+</html>

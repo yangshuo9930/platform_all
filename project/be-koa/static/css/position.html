@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .father {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      background-color: pink;
+    }
+
+    .static {
+      position: static;
+      top: 100px;
+      left: 100px;
+      width: 100px;
+      height: 100px;
+      z-index: 1;
+      background-color: blue
+    }
+
+    .relative {
+      position: relative;
+      top: 100px;
+      left: 100px;
+      width: 100px;
+      height: 100px;
+      z-index: 1;
+      background-color: mediumseagreen
+    }
+
+    .absolute {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top: 200px;
+      left: 200px;
+      background-color: aqua;
+      z-index: 1;
+    }
+
+    .fixed {
+      position: fixed;
+      top: 100px;
+      left: 100px;
+      width: 100px;
+      height: 100px;
+      z-index: 0;
+      background-color: teal
+    }
+
+    .sticky {
+      position: sticky;
+      top: 200px;
+      left: 200px;
+      width: 100px;
+      height: 100px;
+      z-index: 1;
+      background-color: red
+    }
+
+    article {
+      height: 300vh;
+      /* position: relative; */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="father">
+    <span class="static"> static </span>
+    <span class="relative"> relative </span>
+    <span> 我是在relative后面的哦 </span>
+    <span class="absolute"> absolute </span>
+    <span class="fixed"> fixed </span>
+  </div>
+  <article>
+    <span class="sticky"> sticky </span>
+  </article>
+  <div>
+    footer
+  </div>
+</body>
+
+</html>

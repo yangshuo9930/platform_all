@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+  </head>
+  <body>
+    <div style="padding: 2000px 0px">
+      <img data-src="../uploads/003.gif" width="200" height="200" alt="" />
+    </div>
+    <script>
+      const img = document.querySelector('img')
+
+      // 利用 IntersectionObserver API
+      // 参数1 callback
+      // callback是添加监听后，当监听目标发生滚动变化时触发的回调函数。接收一个参数entries，
+      // 参数2 options
+      const options = {
+        root: null, // DOM元素，但默认值为null，也就是视口区域
+        thresholds: 1, // 阈值
+      }
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          console.log('触发---到达可视区了')
+          img.src = img.getAttribute('data-src')
+          observer.unobserve(img)
+          // disconnect()	使IntersectionObserver对象停止全部监听工作
+        }
+      }, options)
+
+      observer.observe(img)
+
+      // isIntersecting
+      // 返回一个布尔值，下列两种操作均会触发callback：1. 如果目标元素出现在root可视区，返回true。2. 如果从root可视区消失，返回false
+
+      //intersectionRatio
+      // 返回目标元素出现在可视区的比例
+
+      // boundingClientRect
+      // 返回包含目标元素的边界信息，返回结果与element.getBoundingClientRect() 相同
+
+      // intersectionRect
+      // 用来描述root和目标元素的相交区域
+
+      //rootBounds
+      // 用来描述交叉区域观察者(intersection observer)中的根.
+
+      //target
+      // 目标元素：与根出现相交区域改变的元素 (Element)
+
+      // time
+      // 返回一个记录从 IntersectionObserver 的时间原点到交叉被触发的时间的时间
+    </script>
+  </body>
+</html>

@@ -1,0 +1,124 @@
+// easy less 转换 css
+
+// 主题
+@xtxColor: #27BA9B;
+// 辅助
+@helpColor: #E26237;
+// 成功
+@sucColor: #1DC779;
+// 警告
+@warnColor: #FFB302;
+// 价格
+@priceColor: #CF4444;
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+.xtx-carousel {
+  // width: 100%;
+  // height: 100%;
+  width: 800px;
+  height: 550px;
+  min-width: 300px;
+  min-height: 150px;
+  position: relative;
+
+  margin: 0 auto;
+
+  .carousel {
+    &-body {
+      width: 100%;
+      height: 100%;
+    }
+
+    &-item {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      transition: opacity 0.5s linear;
+
+      &.fade {
+        opacity: 1;
+        z-index: 1;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &-indicator {
+      position: absolute;
+      left: 0;
+      bottom: 20px;
+      z-index: 2;
+      width: 100%;
+      text-align: center;
+
+      span {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+        cursor: pointer;
+
+        ~span {
+          margin-left: 12px;
+        }
+
+        &.active {
+          background: #fff;
+        }
+      }
+    }
+
+    &-btn {
+      width: 44px;
+      height: 44px;
+      background: rgba(0, 0, 0, 0.2);
+      color: #fff;
+      border-radius: 50%;
+      position: absolute;
+      top: 228px;
+      z-index: 2;
+      text-align: center;
+      line-height: 44px;
+      opacity: 0;
+      transition: all 0.5s;
+
+      &.prev {
+        left: 20px;
+      }
+
+      &.next {
+        right: 20px;
+      }
+    }
+  }
+
+  &:hover {
+    .carousel-btn {
+      opacity: 1;
+    }
+  }
+}

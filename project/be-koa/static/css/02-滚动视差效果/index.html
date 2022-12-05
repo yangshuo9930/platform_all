@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    .wrapper {
+      height: 100vh;
+      overflow-x: hidden;
+      /* 关键属性: 父盒子具有3d效果 */
+      perspective: 3px;
+    }
+    .wrapper div {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-style: 30px;
+      letter-spacing: 2px;
+    }
+    .image {
+      /* translateZ 调节 z轴距离 scale 方大让元素的大小看起来和原来无异 */
+      transform: translateZ(-1px) scale(1.6);
+      background-size: cover;
+      height: 100vh;
+      z-index: -1;
+    }
+    .text {
+      height: 50vh;
+      background-color: #fff;
+    }
+    .text h1 {
+      color: #000;
+    }
+    .title {
+      z-index: -1;
+      transform: translateY(-30vh) translateZ(1px);
+      color: #fff;
+      font-size: 30px;
+    }
+  </style>
+
+  <body>
+    <div class="wrapper">
+      <div class="image" style="background-image: url('./1.jpg')"></div>
+      <div class="title">
+        <h1>当你困惑时</h1>
+      </div>
+      <div class="text">
+        <h1>在脑海里设定目标</h1>
+      </div>
+
+      <div class="image" style="background-image: url('./2.jpg')"></div>
+      <div class="title">
+        <h1>当你陷入低谷时</h1>
+      </div>
+      <div class="text">
+        <h1>试着唤醒你心中的野兽</h1>
+      </div>
+
+      <div class="image" style="background-image: url('./3.jpg')"></div>
+      <div class="title">
+        <h1>当别人离开你时</h1>
+      </div>
+      <div class="text">
+        <h1>是时候开始你的赛季了</h1>
+      </div>
+
+      <div class="image" style="background-image: url('./4.jpg')"></div>
+      <div class="title">
+        <h1>来吧,陌生人。</h1>
+      </div>
+    </div>
+  </body>
+</html>
