@@ -1,7 +1,7 @@
 class Person {
-  static #count = 0;
+  static #count = 0
 
-  static getCount () {
+  static getCount() {
     return this.#count
   }
 
@@ -9,7 +9,7 @@ class Person {
     this.constructor.#incrementCount()
   }
 
-  static #incrementCount () {
+  static #incrementCount() {
     this.#count++
   }
 }

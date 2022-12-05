@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean:all": "rimraf node_modules **/*/node_modules",
-    "lint:eslint": "eslint \"{project,packages}/**/*.{vue,ts,tsx,js,jsx}\" --fix",
-    "lint:prettier": "prettier --write --loglevel warn \"{project,packages}/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
+    "lint:eslint": "eslint \"{project,packages,project_demo}/**/*.{vue,ts,tsx,js,jsx}\" --fix",
+    "lint:prettier": "prettier --write --loglevel warn \"{project,packages,project_demo}/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
     "prepare": "husky install"
   },
   "author": "",
@@ -37,12 +37,7 @@
     "mock": "^0.1.1"
   },
   "lint-staged": {
-    "packages/**/*.{js,jsx,ts,tsx,json}": [
-      "prettier --write",
-      "eslint --fix",
-      "git add"
-    ],
-    "project/**/*.{js,jsx,ts,tsx,json,vue}": [
+    "{packages,project,project_demo}/**/*.{vue,js,jsx,ts,tsx,json}": [
       "prettier --write",
       "eslint --fix",
       "git add"

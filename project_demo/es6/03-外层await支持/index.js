@@ -4,7 +4,7 @@
 
 // es13 解决了这个问题
 
-function setTimeoutAsync (timeout) {
+function setTimeoutAsync(timeout) {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve()
