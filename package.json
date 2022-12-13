@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "pnpm -C ./project/fe-v3-naive dev",
     "clean:all": "rimraf node_modules **/*/node_modules",
     "lint:eslint": "eslint \"{project,packages,project_demo}/**/*.{vue,ts,tsx,js,jsx}\" --fix",
     "lint:prettier": "prettier --write --loglevel warn \"{project,packages,project_demo}/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
@@ -24,17 +24,19 @@
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.2",
     "lint-staged": "^13.0.4",
-    "lodash-es": "^4.17.21",
-    "moment": "^2.29.4",
     "prettier": "^2.8.0",
-    "qs": "^6.11.0",
     "rimraf": "^3.0.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.9.3"
   },
   "dependencies": {
+    "dayjs": "^1.11.6",
     "koa": "^2.13.4",
-    "mock": "^0.1.1"
+    "lodash-es": "^4.17.21",
+    "mockjs": "^1.1.0",
+    "moment": "^2.29.4",
+    "openai": "^3.1.0",
+    "qs": "^6.11.0"
   },
   "lint-staged": {
     "{packages,project,project_demo}/**/*.{vue,js,jsx,ts,tsx,json}": [

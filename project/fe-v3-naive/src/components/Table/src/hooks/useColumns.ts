@@ -9,9 +9,20 @@ import { NTooltip, NIcon } from 'naive-ui'
 import { FormOutlined } from '@vicons/antd'
 
 export function useColumns(propsRef: ComputedRef<BasicTableProps>) {
-  const columnsRef = ref(unref(propsRef).columns) as unknown as Ref<BasicColumn[]>
+  const columnsRef = ref(unref(propsRef).columns) as unknown as Ref<BasicColumn[]> // 受控的columns
   let cacheColumns = unref(propsRef).columns
 
+  function handleActionColumn(propsRef: ComputedRef<BasicTableProps>, columns: BasicColumn[]) {
+    const { actionColumn } = unref(propsRef)
+    if (!actionColumn) return
+    // columns中是已经存在了 actionColumn 则return, 否则将 actionColumn 增加进columns中
+    !columns.find((col) => col.key === 'action') &&
+      columns.push({
+        ...(actionColumn as any)
+      })
+  }
+
+  // 获取完整的columns
   const getColumnsRef = computed(() => {
     const columns = cloneDeep(unref(columnsRef))
 
@@ -20,10 +31,11 @@ export function useColumns(propsRef: ComputedRef<BasicTableProps>) {
     return columns
   })
 
+  // 控制权限的, 可以先不看
   const { hasPermission } = usePermission()
 
   function isIfShow(action: ActionItem): boolean {
-    const ifShow = action.ifShow
+    const ifShow = action.ifShow // action.ifShow 业务控制是否显示
 
     let isIfShow = true
 
@@ -31,7 +43,7 @@ export function useColumns(propsRef: ComputedRef<BasicTableProps>) {
       isIfShow = ifShow
     }
     if (isFunction(ifShow)) {
-      isIfShow = ifShow(action)
+      isIfShow = ifShow(action) // 如果是函数, 则执行函数逻辑, 得到是个显示的布尔值
     }
     return isIfShow
   }
@@ -44,20 +56,26 @@ export function useColumns(propsRef: ComputedRef<BasicTableProps>) {
   }
 
   const getPageColumns = computed(() => {
+    // 两个最终的columns
     const pageColumns = unref(getColumnsRef)
     const columns = cloneDeep(pageColumns)
+    // 操作完整的columns, 得到最终要显示的columns
     return columns
       .filter((column) => {
+        // 登录者是否有权限操作 || 是否要根据业务逻辑显示
         return hasPermission(column.auth as string[]) && isIfShow(column)
       })
       .map((column) => {
-        //默认 ellipsis 为true
+        // 默认 ellipsis 为true
         column.ellipsis = typeof column.ellipsis === 'undefined' ? { tooltip: true } : false
+
+        // 如果columns的item中有edit属性, 则item可直接编辑
         const { edit } = column
         if (edit) {
-          column.render = renderEditCell(column)
+          column.render = renderEditCell(column) // TODO:
           if (edit) {
             const title: any = column.title
+            // 可编辑的头部新增一些提示效果, 告诉使用者该列可编辑
             column.title = () => {
               return renderTooltip(
                 h('span', {}, [
@@ -81,6 +99,7 @@ export function useColumns(propsRef: ComputedRef<BasicTableProps>) {
       })
   })
 
+  // columns改变
   watch(
     () => unref(propsRef).columns,
     (columns) => {
@@ -89,16 +108,7 @@ export function useColumns(propsRef: ComputedRef<BasicTableProps>) {
     }
   )
 
-  function handleActionColumn(propsRef: ComputedRef<BasicTableProps>, columns: BasicColumn[]) {
-    const { actionColumn } = unref(propsRef)
-    if (!actionColumn) return
-    !columns.find((col) => col.key === 'action') &&
-      columns.push({
-        ...(actionColumn as any)
-      })
-  }
-
-  //设置
+  // 设置 TODO:
   function setColumns(columnList: string[]) {
     const columns: any[] = cloneDeep(columnList)
     if (!isArray(columns)) return

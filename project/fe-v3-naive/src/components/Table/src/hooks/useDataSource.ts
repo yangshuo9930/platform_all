@@ -12,11 +12,11 @@ export function useDataSource(
   const dataSourceRef = ref<Recordable[]>([])
 
   watchEffect(() => {
-    tableData.value = unref(dataSourceRef)
+    tableData.value = unref(dataSourceRef) // tableData初始值为[]
   })
 
   watch(
-    () => unref(propsRef).dataSource,
+    () => unref(propsRef).dataSource, // 如果BaseTable组件接收了初始的dataSource, 那么tableData = dataSource
     () => {
       const { dataSource }: any = unref(propsRef)
       dataSource && (dataSourceRef.value = dataSource)
@@ -27,6 +27,7 @@ export function useDataSource(
   )
 
   const getRowKey = computed(() => {
+    // 获取rowKey字段名称 rowKey 默认为字段名为 'key'
     const { rowKey }: any = unref(propsRef)
     return rowKey
       ? rowKey
@@ -35,6 +36,7 @@ export function useDataSource(
         }
   })
 
+  // 获取dataSource的值
   const getDataSourceRef = computed(() => {
     const dataSource = unref(dataSourceRef)
     if (!dataSource || dataSource.length === 0) {
@@ -44,11 +46,12 @@ export function useDataSource(
   })
 
   async function fetch(opt?) {
+    // 尝试获取数据
     try {
       setLoading(true)
-      const { request, pagination }: any = unref(propsRef)
+      const { request, pagination }: any = unref(propsRef) // 获取api和分页信息
       if (!request) return
-      //组装分页信息
+      // 组装分页信息, 确定分页的一些字段名
       const pageField = APISETTING.pageField
       const sizeField = APISETTING.sizeField
       const totalField = APISETTING.totalField
@@ -108,6 +111,7 @@ export function useDataSource(
     }
   }
 
+  // 组件生成时调用接口获取数据
   onMounted(() => {
     setTimeout(() => {
       fetch()

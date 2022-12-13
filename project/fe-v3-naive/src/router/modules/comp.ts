@@ -154,6 +154,14 @@ const routes: Array<RouteRecordRaw> = [
           title: '表单详情'
         },
         component: () => import('@/views/comp/detail/index.vue')
+      },
+      {
+        path: 'excel',
+        name: 'export-excel',
+        meta: {
+          title: '导出Excel'
+        },
+        component: () => import('@/views/comp/excel/index.vue')
       }
     ]
   }

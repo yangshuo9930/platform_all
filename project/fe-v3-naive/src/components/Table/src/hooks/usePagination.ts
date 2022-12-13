@@ -11,7 +11,11 @@ export function usePagination(refProps: ComputedRef<BasicTableProps>) {
 
   const getPaginationInfo = computed((): PaginationProps | boolean => {
     const { pagination } = unref(refProps)
+    console.log(1, pagination)
+
     if (!unref(show) || (isBoolean(pagination) && !pagination)) {
+      console.log(2)
+
       return false
     }
     const { totalField } = APISETTING

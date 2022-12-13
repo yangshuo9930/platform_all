@@ -77,6 +77,6 @@ app.use(router.routes())
 app.use(router.allowedMethods()) // 请求错误,友好提示
 
 // 4. 启动应用
-app.listen(8080, () => {
-  console.log('服务器启动成功, 地址为 http://localhost:8080')
+app.listen(3000, () => {
+  console.log('服务器启动成功, 地址为 http://localhost:3080')
 })

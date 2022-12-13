@@ -1,4 +1,4 @@
-import type { PropType } from 'vue'
+import { PropType } from 'vue'
 import { propTypes } from '@/utils/propTypes'
 import { BasicColumn } from './types/table'
 import { NDataTable } from 'naive-ui'
@@ -33,6 +33,7 @@ export const basicProps = {
     type: [String, Function] as PropType<string | ((record) => string)>,
     default: undefined
   },
+  // dataTable接收的属性
   pagination: {
     type: [Object, Boolean],
     default: () => {}

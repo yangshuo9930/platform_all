@@ -269,7 +269,7 @@ onMounted(() => {
 }
 
 .main-view-fix {
-  padding-top: 44px;
+  padding-top: 40px;
 }
 
 .noMultiTabs {

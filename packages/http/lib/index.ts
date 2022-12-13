@@ -12,6 +12,9 @@ import { deepMerge, isUrl, setObjToUrlParams, isString, storage } from '@monorep
 import { RequestOptions, Result, CreateAxiosOptions } from './types'
 import { TOKEN_KEY } from '@monorepo/config/fe-v3-naive/cacheSetting'
 import { MOCK_URL } from '@monorepo/config/fe-v3-naive/httpSetting'
+import { openAiTokenKey, openAiToken } from '@monorepo/config/const'
+
+storage.set(openAiTokenKey, openAiToken)
 
 const urlPrefix = ''
 
@@ -288,6 +291,14 @@ export const httpMock = createAxios({
     apiUrl: MOCK_URL
   },
   tokenKey: TOKEN_KEY,
+  authenticationScheme: 'Bearer'
+})
+
+export const httpOpenAi = createAxios({
+  requestOptions: {
+    apiUrl: '/openai/api'
+  },
+  tokenKey: openAiTokenKey,
   authenticationScheme: 'Bearer'
 })
 

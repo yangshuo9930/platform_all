@@ -20,7 +20,9 @@
 
     <div class="flex items-center table-toolbar-right">
       <!--顶部右侧区域-->
-      <slot name="toolbar"></slot>
+      <slot name="toolbar">
+        <n-button type="primary">导出数据</n-button>
+      </slot>
 
       <!--刷新-->
       <n-tooltip trigger="hover">
@@ -133,7 +135,7 @@ export default defineComponent({
   emits: [
     'fetch-success',
     'fetch-error',
-    'update:checked-row-keys',
+    // 'update:checked-row-keys',
     'edit-end',
     'edit-cancel',
     'edit-row-end',
@@ -146,9 +148,12 @@ export default defineComponent({
     let paginationEl: HTMLElement | null
 
     const tableData = ref<Recordable[]>([])
-    const innerPropsRef = ref<Partial<BasicTableProps>>()
+    const innerPropsRef = ref<Partial<BasicTableProps>>() // 受控模式下设置组件接收的props
+
+    console.log('ppppppppppppp', props)
 
     const getProps = computed(() => {
+      // 不太好, 数据有时候不明确
       return { ...props, ...unref(innerPropsRef) } as BasicTableProps
     })
 
@@ -193,9 +198,11 @@ export default defineComponent({
     }
 
     //选中行
-    function updateCheckedRowKeys(rowKeys) {
-      emit('update:checked-row-keys', rowKeys)
-    }
+    // function updateCheckedRowKeys(rowKeys) {
+    //   console.log('aaa', rowKeys)
+
+    //   emit('update:checked-row-keys', rowKeys)
+    // }
 
     //获取表格大小
     const getTableSize = computed(() => state.tableSize)

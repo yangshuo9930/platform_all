@@ -13,7 +13,7 @@
       ref="actionRef"
       :actionColumn="actionColumn"
       @update:checked-row-keys="onCheckedRow"
-      :scroll-x="1090"
+      :scroll-x="1000"
     >
       <template #tableTitle>
         <n-button type="primary" @click="addTable">
@@ -70,6 +70,9 @@ import { getTableList } from '@/api/mock/list'
 import { columns } from './columns'
 import { PlusOutlined } from '@vicons/antd'
 import { useRouter } from 'vue-router'
+// import { getOpenAiMsg } from '@/api/openai/index'
+// const res = await getOpenAiMsg()
+// console.log('res', res)
 
 const rules: FormRules = {
   name: {
@@ -227,11 +230,6 @@ const formParams = reactive({
   date: null
 })
 
-const params = ref({
-  pageSize: 5,
-  name: 'xiaoMa'
-})
-
 const actionColumn = reactive({
   width: 220,
   title: '操作',
@@ -288,7 +286,8 @@ const actionColumn = reactive({
 const [register, {}] = useForm({
   gridProps: { cols: '1 s:1 m:2 l:3 xl:4 2xl:4' },
   labelWidth: 80,
-  schemas
+  schemas,
+  // layout: 'inline'
 })
 
 function addTable() {
@@ -296,7 +295,7 @@ function addTable() {
 }
 
 const loadDataTable = async (res) => {
-  return await getTableList({ ...formParams, ...params.value, ...res })
+  return await getTableList({ ...formParams, ...res })
 }
 
 function onCheckedRow(rowKeys) {
