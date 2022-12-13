@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm -C ./project/fe-v3-naive dev",
-    "deploy": "gh-pages -d ./project/fe-v3-naive dist",
+    "dev": "npm -C ./project/fe-v3-naive run dev",
+    "deploy": "gh-pages -d ./project/fe-v3-naive dist -r https://github.com/yangshuo9930/platform_all.git -b gh-pages",
     "clean:all": "rimraf node_modules **/*/node_modules",
     "lint:eslint": "eslint \"{project,packages,project_demo}/**/*.{vue,ts,tsx,js,jsx}\" --fix",
     "lint:prettier": "prettier --write --loglevel warn \"{project,packages,project_demo}/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
