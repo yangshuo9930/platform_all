@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts" setup>
-import { BasicForm } from '@/components/Form/index'
+import BasicForm from '@/components/Form/index'
 import { useMessage } from 'naive-ui'
 
 const schemas = [

@@ -15,6 +15,7 @@ importers:
       eslint-config-prettier: ^8.5.0
       eslint-define-config: 1.0.9
       eslint-plugin-prettier: ^4.2.1
+      gh-pages: ^3.2.3
       husky: ^8.0.2
       koa: ^2.13.4
       lint-staged: ^13.0.4
@@ -46,6 +47,7 @@ importers:
       eslint-config-prettier: 8.5.0_eslint@8.28.0
       eslint-define-config: 1.0.9
       eslint-plugin-prettier: 4.2.1_cwlo2dingkvfydnaculr42urve
+      gh-pages: 3.2.3
       husky: 8.0.2
       lint-staged: 13.0.4
       prettier: 2.8.0
