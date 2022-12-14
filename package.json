@@ -3,15 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "author": {
+    "name": "yangshuo9930",
+    "email": "yangshuo9930@163.com",
+    "url": "https://github.com/yangshuo9930/platform_all"
+  },
   "scripts": {
     "dev": "npm -C ./project/fe-v3-naive run dev",
-    "deploy": "gh-pages -d ./project/fe-v3-naive dist -r https://github.com/yangshuo9930/platform_all.git -b gh-pages",
+    "predeploy": "npm -C ./project/fe-v3-naive run build:prod",
+    "deploy": "gh-pages -d ./project/fe-v3-naive/dist -r https://github.com/yangshuo9930/platform_all.git -b gh-pages",
     "clean:all": "rimraf node_modules **/*/node_modules",
     "lint:eslint": "eslint \"{project,packages,project_demo}/**/*.{vue,ts,tsx,js,jsx}\" --fix",
     "lint:prettier": "prettier --write --loglevel warn \"{project,packages,project_demo}/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
     "prepare": "husky install"
   },
-  "author": "",
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
@@ -46,6 +51,8 @@
       "eslint --fix",
       "git add"
     ]
+  },
+  "config": {
   },
   "keywords": [
     "pnpm",

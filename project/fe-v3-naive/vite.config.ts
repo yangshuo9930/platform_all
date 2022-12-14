@@ -11,7 +11,7 @@ const { dependencies, devDependencies, name, version } = pkg
 
 const __APP_INFO__ = {
   pkg: { dependencies, devDependencies, name, version },
-  lastBuildTime: dayjs(new Date()).format('yyyy-MM-dd HH:mm:ss')
+  lastBuildTime: dayjs().format('yyyy-MM-dd HH:mm:ss')
 }
 
 function pathResolve(dir: string) {
@@ -82,7 +82,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       //     drop_console: VITE_DROP_CONSOLE,
       //   },
       // },
-      brotliSize: false,
+      reportCompressedSize: false,
       chunkSizeWarningLimit: 2000
     }
   }
