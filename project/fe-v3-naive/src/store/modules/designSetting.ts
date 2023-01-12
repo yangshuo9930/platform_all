@@ -1,6 +1,9 @@
 import { defineStore } from 'pinia'
 import { store } from '@/store'
 import designSetting from '@/settings/designSetting'
+import { APP_THEME } from '@monorepo/config/fe-v3-naive/cacheSetting'
+
+import { storage } from '@monorepo/utils'
 
 const { darkTheme, appTheme, appThemeList } = designSetting
 
@@ -17,7 +20,7 @@ export const useDesignSettingStore = defineStore({
   id: 'app-design-setting',
   state: (): DesignSettingState => ({
     darkTheme,
-    appTheme,
+    appTheme: storage.get(APP_THEME, appTheme),
     appThemeList
   }),
   getters: {

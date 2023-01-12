@@ -4,6 +4,7 @@ import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import WindiCSS from 'vite-plugin-windicss'
 
 import { configHtmlPlugin } from './html'
 import { configMockPlugin } from './mock'
@@ -17,6 +18,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean, prodMock) 
     vue(),
     // have to
     vueJsx(),
+    WindiCSS(),
 
     // 按需引入NaiveUi且自动创建组件声明
     Components({

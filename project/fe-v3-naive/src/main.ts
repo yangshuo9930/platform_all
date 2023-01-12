@@ -1,4 +1,5 @@
-import './styles/tailwind.css'
+// import './styles/tailwind.css' // tailwindcss 迁移到 windcss
+import 'virtual:windi.css'
 import { createApp } from 'vue'
 import App from './App.vue'
 import router, { setupRouter } from './router'

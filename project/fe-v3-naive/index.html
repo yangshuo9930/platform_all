@@ -12,7 +12,7 @@
   <title><%= title %></title>
 </head>
 <body>
-<div id="appProvider" style="display: none"></div>
+<div id="appProvider" class="<%= appCode %>" style="display: none"></div>
 <div id="app">
   <style>
     .first-loading-wrap {
@@ -116,7 +116,15 @@
     </div>
   </div>
 </div>
-<script>var globalThis = window;</script>
+<script>
+  var globalThis = window
+  const dom = document.querySelectorAll('.dot i')
+  const appCode = document.querySelector('#appProvider').className
+  const appTheme = JSON.parse(localStorage.getItem(`${appCode.toUpperCase()}_APP_THEME`))?.value || '#1890ff'
+  for (let i = 0; i < dom.length; i++) {
+    dom[i].style.backgroundColor = appTheme
+  }
+</script>
 <script src="/src/main.ts" type="module"></script>
 </body>
 </html>

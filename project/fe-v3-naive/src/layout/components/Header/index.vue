@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-mutating-props -->
 <template>
   <div class="layout-header">
     <!--顶部菜单-->
@@ -70,7 +71,7 @@
       <div
         class="layout-header-trigger layout-header-trigger-min"
         v-for="item in iconList"
-        :key="item.icon.name"
+        :key="item.icon"
       >
         <n-tooltip placement="bottom">
           <template #trigger>
@@ -106,10 +107,7 @@
         </n-dropdown>
       </div>
       <!--设置-->
-      <div
-        class="layout-header-trigger layout-header-trigger-min !hidden sm:!block"
-        @click="openSetting"
-      >
+      <div class="layout-header-trigger layout-header-trigger-min" @click="openSetting">
         <n-tooltip placement="bottom-end">
           <template #trigger>
             <n-icon size="18" style="font-weight: bold">

@@ -1,14 +1,18 @@
 module.exports = {
-  mode: 'jit',
-  // darkMode: 'class',
+  // mode: 'jit',
+  darkMode: 'class',
   plugins: [createEnterPlugin()],
-  content: {
-    enable: process.env.NODE_ENV === 'production',
-    content: ['./index.html', './src/**/*.{vue,ts,tsx}']
+  // purge: {
+  //   enable: process.env.NODE_ENV === 'production',
+  //   content: ['./index.html', './src/**/*.{vue,ts,tsx}']
+  // },
+  // corePlugins: {
+  //   preflight: false
+  // },
+  extract: {
+    include: ['./index.html', './src/**/*.{vue,ts,tsx}']
   },
-  corePlugins: {
-    preflight: false
-  },
+  safelist: ['prose', 'prose-sm', 'm-auto'],
   theme: {
     extend: {
       zIndex: {

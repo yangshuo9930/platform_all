@@ -237,6 +237,8 @@ import { CheckOutlined } from '@vicons/antd'
 import { Moon, SunnySharp } from '@vicons/ionicons5'
 import { darkTheme } from 'naive-ui'
 import { animates as animateOptions } from '@/settings/animateSetting'
+import { storage } from '@monorepo/utils'
+import { APP_THEME } from '@monorepo/config/fe-v3-naive/cacheSetting'
 
 export default defineComponent({
   name: 'ProjectSetting',
@@ -292,6 +294,7 @@ export default defineComponent({
 
     function togTheme(color) {
       designStore.appTheme = color
+      storage.set(APP_THEME, color)
     }
 
     function togNavMode(mode) {
