@@ -17,3 +17,24 @@ insert into tb_users (username, name, age, gender) values ('无敌战神暴龙�
 
 -- 添加外键
 alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references dept(id);
+
+alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references
+dept(id) on update cascade on delete cascade;
+
+delete from dept where id = 1;
+
+update dept set id = 6 where id =2;
+
+delete from dept where id  =5;
+
+
+-- 删除外键
+alter table emp drop foreign key fk_emp_dept_id;
+
+-- 新建外键, 并约束外键更新和删除状态为 set null
+alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references dept(id) on update set null on delete set null;
+
+-- 修改父表的id为1的记录
+update dept set id = 7 where id = 1; # 发现子表中原先dept_id 为 1 的全部变为了null
+
+

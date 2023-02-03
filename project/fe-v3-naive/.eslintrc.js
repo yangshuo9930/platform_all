@@ -25,6 +25,7 @@ module.exports = defineConfig({
   ],
   rules: {
     'vue/script-setup-uses-vars': 'error',
+    'vue/multi-word-component-names': 'warn',
     'vue/valid-template-root': 'off',
     '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',

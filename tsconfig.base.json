@@ -1,19 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ES6",  // 编译为ES6语法                              
-    "module": "ES6",  // 使用ES6模块化规范                        
-    "forceConsistentCasingInFileNames": true, // 强制代码中引入的模块文件名必须和文件系统中的文件名的大小写保持一致          
-    "strict": true,   // 开启严格模式
-    "allowJs": true,  // 允许JS
+    "target": "ES6", // 编译为ES6语法
+    "module": "ES6", // 使用ES6模块化规范
+    "forceConsistentCasingInFileNames": true, // 强制代码中引入的模块文件名必须和文件系统中的文件名的大小写保持一致
+    "strict": true, // 开启严格模式
+    "allowJs": true, // 允许JS
     "moduleResolution": "node", // ts的模块解析策略
     "noUnusedLocals": false, // 没有使用不报错
     "noUnusedParameters": false, // 没有使用不报错
     "baseUrl": "."
     // "preserveSymlinks": true // 不把符号链接解析为其真实路径；将符号链接文件视为真正的文件。
   },
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/*.js"
-  ]
+  "exclude": ["node_modules", "dist", "**/*.js"]
 }

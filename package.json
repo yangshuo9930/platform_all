@@ -9,13 +9,15 @@
     "url": "https://github.com/yangshuo9930/platform_all"
   },
   "scripts": {
-    "dev": "npm -C ./project/fe-v3-naive run dev",
-    "predeploy": "npm -C ./project/fe-v3-naive run build:prod",
+    "dev": "pnpm --filter @project/fe-v3-naive run dev",
+    "build": "pnpm --filter @project/fe-v3-naive run build:prod",
+    "predeploy": "pnpm --filter @project/fe-v3-naive run build:prod",
     "dev-koa": "pnpm --filter @project/be-koa run dev",
+    "dev-nest": "pnpm --filter @project/be-nest run start:dev",
     "deploy": "gh-pages -d ./project/fe-v3-naive/dist -r https://github.com/yangshuo9930/platform_all.git -b gh-pages",
     "clean:all": "rimraf node_modules **/*/node_modules",
-    "lint:eslint": "eslint \"{project,packages,project_demo}/**/*.{vue,ts,tsx,js,jsx}\" --fix",
-    "lint:prettier": "prettier --write --loglevel warn \"{project,packages,project_demo}/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
+    "lint:eslint": "eslint \"{project,packages}/**/*.{vue,ts,tsx,js,jsx}\" --fix",
+    "lint:prettier": "prettier --write --loglevel warn \"{project,packages}/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
     "prepare": "husky install"
   },
   "devDependencies": {
@@ -53,8 +55,7 @@
       "git add"
     ]
   },
-  "config": {
-  },
+  "config": {},
   "keywords": [
     "pnpm",
     "naive-ui",

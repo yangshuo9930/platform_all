@@ -142,8 +142,7 @@ import {
   computed,
   unref,
   onMounted,
-  onUnmounted,
-  nextTick
+  onUnmounted
 } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import components from './components'
@@ -156,7 +155,7 @@ import { AsideMenu } from '@/layout/components/Menu'
 import { useProjectSetting } from '@/hooks/setting/useProjectSetting'
 import { useGlobSetting } from '@/hooks/setting/index'
 import BasicModal, { TypeBasicModal, useModal } from '@/components/Modal'
-import BasicForm, { TypeBasicForm, FormSchema, useForm } from '@/components/Form/index'
+import BasicForm, { FormSchema, useForm } from '@/components/Form/index'
 
 export default defineComponent({
   name: 'PageHeader',
