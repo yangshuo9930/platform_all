@@ -12,4 +12,5 @@
   "[vue]": {
     "editor.defaultFormatter": "Vue.volar"
   },
+  "editor.formatOnSave": false,
 }

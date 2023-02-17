@@ -246,7 +246,7 @@ const loading = ref(true)
 const visits = ref<any>({})
 const saleroom = ref<any>({})
 const orderLarge = ref<any>({})
-const volume = ref({})
+const volume = ref({}) as any
 
 // 图标列表
 const iconList = [
